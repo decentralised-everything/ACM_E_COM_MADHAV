@@ -4,5 +4,7 @@ Content-Type: application/json
 {
     "name": "homie",
     "password": "lol",
-    "type": "log_in"
+    "type": "sign_up"
 }
+
+// change type to log_in to login
