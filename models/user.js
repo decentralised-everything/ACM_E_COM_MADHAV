@@ -15,12 +15,12 @@ const userSchema = new mongoose.Schema({
   },
   bio: {
     type: String,
-    required: true,
   },
   userType: {
     type: String, //{Noob, Buyer, Seller}
+    default: "Noob",
     required: true,
   },
 });
 
-module.exports = user = mongoose.model("user", userSchema);
+module.exports = User = mongoose.model("user", userSchema);
