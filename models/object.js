@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 // can you put a schema object in another schema object? put owner as user type
 const objSchema = new mongoose.Schema({
   owner:{
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
+    required: true
   },
   bids:[
     {

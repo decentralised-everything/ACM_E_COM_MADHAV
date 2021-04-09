@@ -1,8 +1,8 @@
 const router = require("express").Router();
 const User = require("../models/user");
-const AuthenticateToken = require("../config/authentication");
+const AuthenticateUser = require("../config/authentication");
 // to edit profile
-router.post("/:name", AuthenticateToken, async (req, res) => {
+router.post("/:name", AuthenticateUser, async (req, res) => {
   const { name } = req.params;
   const user = req.user;
   if (name === req.user.name) {
@@ -12,8 +12,8 @@ router.post("/:name", AuthenticateToken, async (req, res) => {
 });
 
 // to get profile
-// remove AuthenticateToken if the accounts should be public
-router.get("/:name", AuthenticateToken, async (req, res) => {
+// remove AuthenticateUser if the accounts should be public
+router.get("/:name", AuthenticateUser, async (req, res) => {
   const { name } = req.params;
   const user = users.find((user) => (user.name = name)); // local test
   // const user = await User.findOne({ name: name });

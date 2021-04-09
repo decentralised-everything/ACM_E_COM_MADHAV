@@ -2,7 +2,7 @@ require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
-const AuthenticateToken = async (req, res, next) => {
+const AuthenticateUser = async (req, res, next) => {
   const Header_auth = req.headers["authorization"];
   const token = Header_auth && Header_auth.split(" ")[1];
   if (!token) return res.sendStatus(401);
@@ -15,4 +15,4 @@ const AuthenticateToken = async (req, res, next) => {
   });
 };
 
-module.exports = AuthenticateToken;
+module.exports = AuthenticateUser;

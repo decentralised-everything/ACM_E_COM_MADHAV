@@ -1,15 +1,14 @@
-const express = require("express");
-const router = express.Router();
+const router = require("express").Router();
 const Obj = require("../models/object");
-const AuthenticateToken = require("../config/authentication");
+const AuthenticateUser = require("../config/authentication");
 
 // feed only for ppl who logged in
-router.get("/", AuthenticateToken, async (req, res) => {
+router.get("/", AuthenticateUser, async (req, res) => {
   // get all the objects in an Objects array
   res.json(Objects);
 });
 
-router.post("/", AuthenticateToken, async (req, res) => {
+router.post("/", AuthenticateUser, async (req, res) => {
   const { name } = req.params;
   const object = req.object;
   const user = req.user;
