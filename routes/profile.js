@@ -1,8 +1,4 @@
-require("dotenv").config();
-
-const express = require("express");
-const router = express.Router();
-const jwt = require("jsonwebtoken");
+const router = require("express").Router();
 const User = require("../models/user");
 const AuthenticateToken = require("../config/authentication");
 // to edit profile
@@ -23,3 +19,5 @@ router.get("/:name", AuthenticateToken, async (req, res) => {
   // const user = await User.findOne({ name: name });
   res.json(user);
 });
+
+module.exports = router;

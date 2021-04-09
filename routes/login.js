@@ -1,12 +1,8 @@
-require("dotenv").config();
-
-const express = require("express");
-const router = express.Router();
+const router = require("express").Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
-
-const users = [];
+const { users } = require("../config");
 // here, body must have name, password and type
 router.post("/", async (req, res) => {
   switch (req.body.type) {

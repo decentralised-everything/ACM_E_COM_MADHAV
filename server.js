@@ -15,9 +15,9 @@ app.use(express.json());
  * 6. if possible, intro page too
  *
  */
-app.use("/login", require("./routes/login.js"));
-app.use('/profile', require('./routes/profile'));
-// app.use('/marketplace', require('./routes/marketplace'));
+app.use("/api/login", require("./routes/login.js"));
+app.use("/api/profile", require("./routes/profile"));
+app.use("/api/feed", require("./routes/marketplace"));
 // app.use('/marketplace/bidding', require('./routes/bidding'));
 // app.use('/admins', require('./routes/admins'));
 
