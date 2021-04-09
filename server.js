@@ -18,7 +18,7 @@ app.use(express.json());
 app.use("/api/login", require("./routes/login.js"));
 app.use("/api/profile", require("./routes/profile"));
 app.use("/api/feed", require("./routes/marketplace"));
-// app.use('/marketplace/bidding', require('./routes/bidding'));
+app.use('/api/marketplace/bidding', require('./routes/bidding'));
 // app.use('/admins', require('./routes/admins'));
 
 app.listen(PORT, () => {
