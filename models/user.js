@@ -16,6 +16,10 @@ const userSchema = new mongoose.Schema({
   bio: {
     type: String,
   },
+  img: {
+    data: Buffer,
+    contentType: String,
+  },
   userType: {
     type: String, //{Noob, Buyer, Seller}
     default: "Noob",

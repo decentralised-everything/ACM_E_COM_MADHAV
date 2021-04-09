@@ -1,6 +1,9 @@
+require("dotenv").config();
+
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
 const users = [];
@@ -14,24 +17,35 @@ router.post("/", async (req, res) => {
           name: req.body.name,
           password: hash,
         });
-        users.push(user);
-        res.status(201).send();
+        users.push(user); // local tests
+        // await user.save();
+        const accessToken = jwt.sign(
+          req.body.name,
+          process.env.ACCESS_SECRET_TOKEN
+        );
+        res.status(201).send({ accessToken: accessToken });
         console.log("\nY");
       } catch (error) {
-        res.status(500).send();
+        res.status(500).json();
         console.log("F");
       }
       break;
 
     case "log_in":
       try {
-        const user = users.find((user) => (user.name = req.body.name));
+        const user = users.find((user) => (user.name = req.body.name)); // local tes
+        // const user = await User.findOne({ name: req.body.name });
         if (!user) {
           return res.status(400).send("F...that user aint there");
         }
         try {
           if (await bcrypt.compare(req.body.password, user.password)) {
-            res.send("yaayyy");
+            const accessToken = jwt.sign(
+              req.body.name,
+              process.env.ACCESS_SECRET_TOKEN
+            );
+            res.status(201).send({ accessToken: accessToken });
+
             console.log("\nY");
           } else {
             res.send("nahhh");
