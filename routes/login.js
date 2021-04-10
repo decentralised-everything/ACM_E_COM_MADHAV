@@ -1,15 +1,17 @@
 const router = require("express").Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const User = require("../models/user");
+const Users = require("../models/user");
 const { users } = require("../config");
 // here, body must have name, password and type
+// implement this as a promise
 router.post("/", async (req, res) => {
   switch (req.body.type) {
+    // unique name like in github
     case "sign_up":
       try {
         const hash = await bcrypt.hash(req.body.password, 10); //salts and hashes in 1 step
-        const user = new User({
+        const user = new Users({
           name: req.body.name,
           password: hash,
         });
