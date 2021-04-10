@@ -5,10 +5,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  email: {
-    type: String,
-    required: true,
-  },
   password: {
     type: String,
     required: true,
@@ -20,11 +16,11 @@ const userSchema = new mongoose.Schema({
     data: Buffer,
     contentType: String,
   },
-  userType: {
-    type: String, //{Noob, Buyer, Seller}
-    default: "Noob",
+  money: {
+    type: Number, 
     required: true,
-  },
+    default: 1000
+  }
 });
 
 module.exports = User = mongoose.model("user", userSchema);

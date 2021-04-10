@@ -13,12 +13,11 @@ app.use(express.json());
  * 4. bidding page // with an extra section for the seller to choose bids
  * 5. admins page (list of users and respective activity)
  * 6. if possible, intro page too
- *
  */
 app.use("/api/login", require("./routes/login.js"));
 app.use("/api/profile", require("./routes/profile"));
 app.use("/api/feed", require("./routes/marketplace"));
-app.use('/api/marketplace/bidding', require('./routes/bidding'));
+app.use("/api/marketplace/bidding", require("./routes/bidding"));
 // app.use('/admins', require('./routes/admins'));
 
 app.listen(PORT, () => {

@@ -7,9 +7,10 @@ router.get("/", AuthenticateUser, async (req, res) => {
   // get all the objects in an Objects array
   res.json(Objects);
 });
+// missing a query, implement it ASAP
 
-router.post("/", AuthenticateUser, async (req, res) => {
-  const { name } = req.params;
+router.post("/", AuthenticateUser, ObtainObject, async (req, res) => {
+  // const { name } = req.params;
   const object = req.object;
   const user = req.user;
   if (object.owner.name === req.user.name) {
@@ -20,9 +21,10 @@ router.post("/", AuthenticateUser, async (req, res) => {
       return res.status(401).send("cheater dude is you");
     }
   } else {
-    return res.status(401).send("cheater dude is you");
+    // go to the bidding page of the object
   }
   res.json(user);
+  // res.redirect
 });
 
 module.exports = router;
