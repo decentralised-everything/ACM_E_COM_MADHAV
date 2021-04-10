@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Bids = require("./bid");
 // can you put a schema object in another schema object? put owner as user type
 const Objs = new mongoose.Schema({
   owner: {
@@ -10,7 +11,6 @@ const Objs = new mongoose.Schema({
     {
       type: mongoose.Schema.ObjectId,
       ref: "Bids",
-      // money, id // id = hash
     }, // gotta sort this based on money and then grab the highest
   ],
   date: {

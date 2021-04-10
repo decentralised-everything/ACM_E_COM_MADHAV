@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const Users = require("./user");
 const Bids = new mongoose.Schema({
   bidder: {
     type: mongoose.Schema.ObjectId,

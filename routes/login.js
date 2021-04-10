@@ -24,7 +24,7 @@ router.post("/", async (req, res) => {
         res.status(201).send({ accessToken: accessToken });
         console.log("\nY");
       } catch (error) {
-        res.status(500).json();
+        res.status(500).end();
         console.log("F");
       }
       break;
@@ -46,11 +46,15 @@ router.post("/", async (req, res) => {
 
             console.log("\nY");
           } else {
-            res.send("nahhh");
+            res.send("nahhh wrong password");
+            res.end();
           }
-        } catch (error) {}
+        } catch (error) {
+          res.end();
+        }
       } catch (error) {
         res.status(500).send();
+        res.end();
         console.log("F");
       }
       break;
