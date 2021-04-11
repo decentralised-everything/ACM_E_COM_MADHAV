@@ -8,7 +8,7 @@ const Objects = require("../models/object");
 const VerifyAndAddObject = async (req, res, next) => {
   if (req.body.object.owner.name === res.locals.user.name) {
     const object = new Object(req.body.object);
-    if (!object.validateSync()) {
+    if (!object.validateSync()/* returns error or undefined*/) {
       object.save();
       res.locals.object = object;
     } else {
@@ -22,4 +22,4 @@ const VerifyAndAddObject = async (req, res, next) => {
   next();
 };
 
-module.exports = ObtainObject;
+module.exports = VerifyAndAddObject;
