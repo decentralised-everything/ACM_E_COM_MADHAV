@@ -2,7 +2,7 @@ const router = require("express").Router();
 const AuthenticateUser = require("../config/AuthenticateUser");
 const VerifyAndAddObject = require("../config/VerifyAndAddObject");
 const ReturnObjects = require("../config/ReturnObjects");
-const ListenImposterBids = require("../config/ListenImposterBids");
+const {StartChecking} = require("../config/CheckBids");
 
 // feed only for ppl who logged in
 router.get(
@@ -17,7 +17,7 @@ router.post(
   "/add",
   AuthenticateUser,
   VerifyAndAddObject,
-  ListenImposterBids,
+  StartChecking,
   ReturnObjects
 );
 
