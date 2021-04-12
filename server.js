@@ -21,7 +21,10 @@ mongoose.connect(connection_url, {
  * 5. admins page (list of users and respective activity)
  * 6. if possible, intro page too
  */
-app.use("/login", require("./routes/login.js"));
+app.get("/", (req, res) => {
+  res.send("hello!");
+});
+app.use("/join", require("./routes/join.js"));
 app.use("/profile", require("./routes/profile"));
 app.use("/feed", require("./routes/marketplace"));
 app.use("/feed", require("./routes/bidding"));
