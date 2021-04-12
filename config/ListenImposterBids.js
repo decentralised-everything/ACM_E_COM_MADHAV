@@ -7,11 +7,13 @@ const ListenImposterBids = async (req, res, next) => {
   setInterval(() => {
     for (let i = 0; i < res.local.object.bids.length; i++) {
       const bid = res.local.object.bids[i];
+      // finding out the user that cannot pay
       Users.findById(bid.bidder._id, (err, user) => {
         if (err) {
           /*brrrrrrr*/
         } else {
           if (bid.money > user.money) {
+            // removing all the bids that he has made for a particular object
             for (let j = 0; j < res.local.object.bids.length; j++) {
                 if(res.local.object.bids[j].bidder._id === user.id){
                     res.locals.object.bids.splice(j, 1);

@@ -3,14 +3,24 @@ const { syncDevice } = require("../config");
 const ObtainObject = require("../config/ObtainObject");
 const AuthenticateBid = require("../config/AuthenticateBid");
 const AuthenticateUser = require("../config/AuthenticateUser");
-const ListenImposterBids = require("../config/ListenImposterBids");
+
 // here there will be an issue of real time updates
 // method selected: event listening and emitting using syncDevice
 // getting object
-router.get("/:id", ObtainObject, ListenBid, ListenImposterBids);
+router.get(
+  "/:id", 
+  ObtainObject, 
+  ListenBid
+  );
 
 // random person posts a bid or seller selects bid
-router.post("/:id", AuthenticateUser, ObtainObject, AuthenticateBid, SpreadBid);
+router.post(
+  "/:id", 
+  AuthenticateUser, 
+  ObtainObject, 
+  AuthenticateBid, 
+  SpreadBid
+  );
 
 module.exports = router;
 
