@@ -1,8 +1,8 @@
 const router = require("express").Router();
-const AuthenticateUser = require("../config/AuthenticateUser");
-const VerifyAndAddObject = require("../config/VerifyAndAddObject");
-const ReturnObjects = require("../config/ReturnObjects");
-const {StartChecking} = require("../config/CheckBids");
+const AuthenticateUser = require("../middleware/AuthenticateUser");
+const VerifyAndAddObject = require("../middleware/VerifyAndAddObject");
+const ReturnObjects = require("../middleware/ReturnObjects");
+const {StartChecking} = require("../middleware/CheckBids");
 
 // feed only for ppl who logged in
 router.get(

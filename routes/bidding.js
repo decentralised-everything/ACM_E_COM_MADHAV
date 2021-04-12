@@ -1,8 +1,8 @@
 const router = require("express").Router();
 const { syncDevice } = require("../config");
-const ObtainObject = require("../config/ObtainObject");
-const AuthenticateBid = require("../config/AuthenticateBid");
-const AuthenticateUser = require("../config/AuthenticateUser");
+const ObtainObject = require("../middleware/ObtainObject");
+const AuthenticateBid = require("../middleware/AuthenticateBid");
+const AuthenticateUser = require("../middleware/AuthenticateUser");
 
 // here there will be an issue of real time updates
 // method selected: event listening and emitting using syncDevice

@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Users = require("../models/user");
-const { users } = require("../config");
+const { users } = require(".");
 const Signup = async (req, res) => {
     if (req.body.type == "sign_up") {
         // unique names only

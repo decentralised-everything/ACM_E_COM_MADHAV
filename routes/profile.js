@@ -1,7 +1,7 @@
 const router = require("express").Router();
-const AuthenticateUser = require("../config/AuthenticateUser");
-const UpdateUser = require("../config/UpdateUser");
-const ObtainUser = require("../config/ObtainUser");
+const AuthenticateUser = require("../middleware/AuthenticateUser");
+const UpdateUser = require("../middleware/UpdateUser");
+const ObtainUser = require("../middleware/ObtainUser");
 // to edit profile
 router.post(
     "/:name", 

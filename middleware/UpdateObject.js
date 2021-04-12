@@ -1,4 +1,4 @@
-const Objs = require("../models/object");
+
 const {StopChecking} = require("./CheckBids")
 const UpdateObject = async (req, res) => {
   switch (res.locals.bidStatus) {
@@ -8,6 +8,7 @@ const UpdateObject = async (req, res) => {
     case "over":
       StopChecking();
       res.locals.object.remove();
+      res.locals.object = undefined;
       break;
     default:
       break;
