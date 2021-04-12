@@ -2,12 +2,11 @@ const Objs = require("../models/object");
 
 const ReturnObjects = async (req, res) => {
   // returns the list of all objects
-  Objs.find({}).exec((err, objects) => {
+  Objs.find((err, objects) => {
     if (err) {
-      res.send("umm, there was an error with the database");
-      res.end();
+      res.status(500).send("umm, there was an error with the database");
     } else {
-      res.json(objects);
+      res.status(200).send(objects);
     }
   });
 };

@@ -7,17 +7,15 @@ const Objects = require("../models/object");
 
 const VerifyAndAddObject = async (req, res, next) => {
   if (req.body.object.owner.name === res.locals.user.name) {
-    const object = new Object(req.body.object);
-    if (!object.validateSync()/* returns error or undefined*/) {
-      object.save();
-      res.locals.object = object;
-    } else {
-      res.send("invalid object details sent");
-      return res.end();
-    }
+    Objects.create(req.body.object, (err, object) => {
+      if (err /* returns error or undefined*/) {
+        res.status(500).send("invalid object details sent");
+      } else {
+        res.locals.object = object;
+      }
+    });
   } else {
     res.send(`umm, trying to act like ${req.body.object.owner.name}?`);
-    return res.end();
   }
   next();
 };

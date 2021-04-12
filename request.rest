@@ -1,6 +1,11 @@
-GET  https://random-word-api.herokuapp.com/word?number=2000
+POST  http://localhost:6969/login
 Content-Type: application/json
 
+{
+    "name": "Madhav",
+    "password": "Madhav",
+    "type": "sign_up"
+}
 
 // change type to log_in to login
-eyJhbGciOiJIUzI1NiJ9.aG9taWU.t-Q1NKB9kfL2xjrkO4vx1DTvnahrgKxIcHVTh-1rUvU
+//eyJhbGciOiJIUzI1NiJ9.aG9taWU.t-Q1NKB9kfL2xjrkO4vx1DTvnahrgKxIcHVTh-1rUvU

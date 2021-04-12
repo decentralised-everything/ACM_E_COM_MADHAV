@@ -25,4 +25,4 @@ const Objs = new mongoose.Schema({
   },
 });
 
-module.exports = Objs = mongoose.model("Objs", Objs);
+module.exports = mongoose.model("Objs", Objs);

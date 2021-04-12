@@ -1,11 +1,18 @@
 const express = require("express");
-const path = require("path");
+const mongoose = require("mongoose");
+// const path = require("path");
 const app = express();
 
 const PORT = process.env.PORT || 6969;
-
+const connection_url =
+  "mongodb+srv://madhav:madhav@cluster0.tlg4k.mongodb.net/marketplace?retryWrites=true&w=majority";
 app.use(express.json());
 
+mongoose.connect(connection_url, {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useUnifiedTopology: true,
+});
 /* routes:
  * 1. login page
  * 2. profile page
@@ -14,10 +21,10 @@ app.use(express.json());
  * 5. admins page (list of users and respective activity)
  * 6. if possible, intro page too
  */
-app.use("/api/login", require("./routes/login.js"));
-app.use("/api/profile", require("./routes/profile"));
-app.use("/api/feed", require("./routes/marketplace"));
-app.use("/api/feed", require("./routes/bidding"));
+app.use("/login", require("./routes/login.js"));
+app.use("/profile", require("./routes/profile"));
+app.use("/feed", require("./routes/marketplace"));
+app.use("/feed", require("./routes/bidding"));
 // app.use('/admins', require('./routes/admins'));
 
 app.listen(PORT, () => {
