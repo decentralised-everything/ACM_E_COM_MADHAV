@@ -16,15 +16,15 @@ const Login = async (req, res, next) => {
           );
           res.status(201).send({ accessToken: accessToken });
 
-          console.log("\nY");
         } else {
           res.send("nahhh wrong password");
         }
       } catch (error) {}
     } catch (error) {
       res.status(500).send();
-      console.log("F");
     }
+  } else {
+    next();
   }
 };
 

@@ -1,9 +1,9 @@
-GET  http://localhost:6969/
+POST    http://localhost:6969/join
 Content-Type: application/json
 
 {
     "name": "Madhav",
-    "password": "Madhav",
+    "password": "Madhav123",
     "type": "sign_up"
 }
 

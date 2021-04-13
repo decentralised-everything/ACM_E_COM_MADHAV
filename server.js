@@ -8,11 +8,6 @@ const connection_url =
   "mongodb+srv://madhav:madhav@cluster0.tlg4k.mongodb.net/marketplace?retryWrites=true&w=majority";
 app.use(express.json());
 
-mongoose.connect(connection_url, {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useUnifiedTopology: true,
-});
 /* routes:
  * 1. login page
  * 2. profile page
@@ -30,6 +25,14 @@ app.use("/feed", require("./routes/marketplace"));
 app.use("/feed", require("./routes/bidding"));
 // app.use('/admins', require('./routes/admins'));
 
-app.listen(PORT, () => {
-  console.log(`Listening to port ${PORT}...`);
-});
+mongoose
+  .connect(connection_url, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+  })
+  .then((result) =>
+    app.listen(PORT, () => {
+      console.log(`Listening to port ${PORT}...`);
+    })
+  );

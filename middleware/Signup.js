@@ -24,7 +24,7 @@ const Signup = async (req, res) => {
         }
       );
     } catch (error) {
-      res.status(500).send();
+      res.status(500).send("that was hard");
     }
   }
 };
