@@ -1,11 +1,8 @@
-POST    http://localhost:6969/join
+GET     http://localhost:6969/profile/Madhav
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.TWFkaGF2.3WKIvJHsN0ZsEOGYUIMW7i2PpgZiuTm8uKiWn5RAu5M
 
-{
-    "name": "Madhav",
-    "password": "Madhav123",
-    "type": "sign_up"
-}
+
 
 // change type to log_in to login
 //eyJhbGciOiJIUzI1NiJ9.aG9taWU.t-Q1NKB9kfL2xjrkO4vx1DTvnahrgKxIcHVTh-1rUvU
