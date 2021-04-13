@@ -2,10 +2,17 @@ const Users = require("../models/user");
 const UpdateUser = async (req, res) => {
   const { name } = req.params;
   if (name === res.locals.user.name) {
-    await Users.findOneAndUpdate({ name: name }, {}); // how do you add the updated info?
+    try {
+      delete req.body.password;
+      delete req.body.name;
+      delete req.body._id;
+      await Users.findOneAndUpdate({ name: res.locals.user.name }, req.body);
+      console.log("done");
+    } catch (error) {
+      res.send("couldnt update!");
+    }
   } else {
-    res.send(`dont change ${name}'s details, genius!`);
-    res.end();
+    res.status(418).send(`dont change ${name}'s details, genius!`);
   }
 };
 

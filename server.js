@@ -27,6 +27,7 @@ app.use("/feed", require("./routes/bidding"));
 
 mongoose
   .connect(connection_url, {
+    useFindAndModify: false,
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,

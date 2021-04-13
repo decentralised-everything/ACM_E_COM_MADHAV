@@ -26,3 +26,6 @@ const Objs = new mongoose.Schema({
 });
 
 module.exports = mongoose.model("Objs", Objs);
+/*
+{}
+*/

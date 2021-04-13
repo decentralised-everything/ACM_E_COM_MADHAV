@@ -1,8 +1,18 @@
-GET     http://localhost:6969/profile/Madhav
+GET http://localhost:6969/profile/Madhav
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.TWFkaGF2.3WKIvJHsN0ZsEOGYUIMW7i2PpgZiuTm8uKiWn5RAu5M
+authorization: bearer eyJhbGciOiJIUzI1NiJ9.TWFkaGF2.3WKIvJHsN0ZsEOGYUIMW7i2PpgZiuTm8uKiWn5RAu5M
 
-
+{
+  "name": "Madhav",
+  "password": "Madhav123",
+  "money": 1705
+}
+//{
+//  "money": 1705,
+//  "_id": "2",
+//  "name": "Madhav1",
+//  "password": "hehe",
+//}
 
 // change type to log_in to login
 //eyJhbGciOiJIUzI1NiJ9.aG9taWU.t-Q1NKB9kfL2xjrkO4vx1DTvnahrgKxIcHVTh-1rUvU
