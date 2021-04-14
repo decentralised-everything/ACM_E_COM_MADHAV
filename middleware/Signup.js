@@ -3,7 +3,6 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Users = require("../models/user");
 const Signup = async (req, res) => {
-  if (req.body.type == "sign_up") {
     // unique names only
     try {
       const hash = await bcrypt.hash(req.body.password, 10); //salts and hashes in 1 step
@@ -26,7 +25,6 @@ const Signup = async (req, res) => {
     } catch (error) {
       res.status(500).send("that was hard");
     }
-  }
 };
 
 module.exports = Signup;
