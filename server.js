@@ -1,11 +1,10 @@
+require("dotenv").config();
+// required for the database url
 const express = require("express");
 const mongoose = require("mongoose");
-// const path = require("path");
 const app = express();
 
 const PORT = process.env.PORT || 6969;
-const connection_url =
-  "mongodb+srv://madhav:madhav@cluster0.tlg4k.mongodb.net/marketplace?retryWrites=true&w=majority";
 app.use(express.json());
 
 /* routes:
@@ -26,7 +25,7 @@ app.use("/feed", require("./routes/bidding"));
 // app.use('/admins', require('./routes/admins'));
 
 mongoose
-  .connect(connection_url, {
+  .connect(process.env.CONNECTION_URL, {
     useFindAndModify: false,
     useNewUrlParser: true,
     useCreateIndex: true,

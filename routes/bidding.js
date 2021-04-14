@@ -4,7 +4,7 @@ const ObtainObject = require("../middleware/ObtainObject");
 const AuthenticateBid = require("../middleware/AuthenticateBid");
 const AuthenticateUser = require("../middleware/AuthenticateUser");
 
-/* I originally wrote the helper functions
+/* I wrote the helper functions
  * here itself because i was afraid of the 
  * event object syncDevice messing up, had 
  * i defined it in another file

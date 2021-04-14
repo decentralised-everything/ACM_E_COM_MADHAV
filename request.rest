@@ -1,6 +1,6 @@
-POST http://localhost:6969/profile/Madhav1
+GET http://localhost:6969/profile/Madhav1
 Content-Type: application/json
-authorization: bearer eyJhbGciOiJIUzI1NiJ9.TWFkaGF2.3WKIvJHsN0ZsEOGYUIMW7i2PpgZiuTm8uKiWn5RAu5M
+authorization: bearer eyJhbGciOiJIUzI1NiJ9.TWFkaGF2MQ.Qmihcnp0bb0wQaQZBwmHBfLBDv20HzOK7f-2zoeQw_E
 
 {
   "name": "Madhav1",
@@ -13,4 +13,5 @@ authorization: bearer eyJhbGciOiJIUzI1NiJ9.TWFkaGF2.3WKIvJHsN0ZsEOGYUIMW7i2PpgZi
 // change type to log_in to login in /join
 // change type to sign_up to signup in /join
 
-// accesstoken : eyJhbGciOiJIUzI1NiJ9.aG9taWU.t-Q1NKB9kfL2xjrkO4vx1DTvnahrgKxIcHVTh-1rUvU
+// accesstoken (Madhav) : eyJhbGciOiJIUzI1NiJ9.aG9taWU.t-Q1NKB9kfL2xjrkO4vx1DTvnahrgKxIcHVTh-1rUvU
+// accesstoken (Madhav1) : eyJhbGciOiJIUzI1NiJ9.TWFkaGF2MQ.Qmihcnp0bb0wQaQZBwmHBfLBDv20HzOK7f-2zoeQw_E

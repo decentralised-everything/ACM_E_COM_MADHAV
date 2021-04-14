@@ -11,7 +11,6 @@ const Bids = new mongoose.Schema({
     required: true,
   },
 
-  // money, id // id = hash
-}); // gotta sort this based on money and then grab the highest
+}); 
 
 module.exports = mongoose.model("Bids", Bids);

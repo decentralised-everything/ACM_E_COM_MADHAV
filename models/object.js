@@ -16,12 +16,10 @@ const Objs = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now,
-    required: true,
   },
   duration: {
     type: Date,
     default: 86400000, // 1 day in millisecs
-    required: true,
   },
 });
 
