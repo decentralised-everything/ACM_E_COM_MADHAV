@@ -16,33 +16,34 @@ const AuthenticateUser = require("../middleware/AuthenticateUser");
  *  The helper functions */
 const SpreadBid = async (req, res) => {
   try {
-    if (res.locals.user.name !== res.locals.object.owner.name) {
-      await syncDevice.emit(`${res.locals.object.id}-sync`, req.body.bid);
+    if (res.locals.user._id !== res.locals.object.owner._id) {
+      syncDevice.emit(`${res.locals.object._id}-sync`, req.body);
       res.locals.bidStatus = "sync";
     } else {
-      await syncDevice.emit(`${res.locals.object.id}-over`, req.body.bid);
+      syncDevice.emit(`${res.locals.object.id}-over`, req.body);
       res.locals.bidStatus = "over";
     }
   } catch (error) {
-    res.status(500).send("syncing didnt work dudeee :(" + error);
+    res.send("syncing didnt work dudeee :(" + error);
   }
 };
 const ListenBid = async (req, res) => {
   try {
     const object = res.locals.object;
-    res.json({ type: "object", object: object });
-    syncDevice.listen(`${object._id}-sync`, (bid) => {
+    object.populate('bids');
+    res.send({ type: "object", object: object });
+    syncDevice.on(`${object._id}-sync`, (bid) => {
       // new bids are updated to the users
-      res.json({ type: "sync", bid: bid }); // send the recent bid..
+      res.send({ type: "sync", bid: bid }); // send the recent bid..
       // push the bid to the array of bids
     });
-    syncDevice.listen(`${res.locals.object.id}-exit`, (bid) => {
+    syncDevice.on(`${res.locals.object.id}-exit`, (bid) => {
       // the successful bid is chosen
-      res.json({ type: "over", bid: bid });
+      res.send({ type: "over", bid: bid });
       // continue
     });
   } catch (error) {
-    res.status(500).send("listening to syncing didnt work dudeee :(" + error);
+    res.send({ type: "error", error})
   }
 };
 

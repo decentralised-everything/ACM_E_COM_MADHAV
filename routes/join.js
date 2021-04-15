@@ -12,5 +12,4 @@ router.post(
   Login,
   Signup
 );
-
 module.exports = router;

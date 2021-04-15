@@ -1,10 +1,9 @@
-GET http://localhost:6969/feed/6077ed8d10ebae4578e7df23
+POST http://localhost:6969/feed/60781039de0ea60daff8aca0
 Content-Type: application/json
 authorization: bearer eyJhbGciOiJIUzI1NiJ9.TWFkaGF2.3WKIvJHsN0ZsEOGYUIMW7i2PpgZiuTm8uKiWn5RAu5M
 
  {
-  "name": "Madhav",
-  "password": "Madhav123"
+  "id": "60781b5369d7ec173bf6edfb"
  }
 
 // note: do not add a comma after the last json entry
@@ -14,5 +13,5 @@ authorization: bearer eyJhbGciOiJIUzI1NiJ9.TWFkaGF2.3WKIvJHsN0ZsEOGYUIMW7i2PpgZi
 // change type to log_in to login in /join
 // change type to sign_up to signup in /join
 
-// accesstoken (Madhav) : eyJhbGciOiJIUzI1NiJ9.aG9taWU.t-Q1NKB9kfL2xjrkO4vx1DTvnahrgKxIcHVTh-1rUvU
+// accesstoken (Madhav) : eyJhbGciOiJIUzI1NiJ9.TWFkaGF2.3WKIvJHsN0ZsEOGYUIMW7i2PpgZiuTm8uKiWn5RAu5M
 // accesstoken (Madhav1) : eyJhbGciOiJIUzI1NiJ9.TWFkaGF2MQ.Qmihcnp0bb0wQaQZBwmHBfLBDv20HzOK7f-2zoeQw_E

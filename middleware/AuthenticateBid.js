@@ -1,27 +1,52 @@
-const bid = require("../models/user");
+const Bids = require("../models/bid");
 
-//
+/*
+structure: {
+  money: 30
+} 
+*/
 const AuthenticateBid = async (req, res, next) => {
-  if (
-    req.body.bid.money >=
-      res.locals.object.bids[res.locals.object.bids.length - 1].money &&
-    req.body.bid.money <= res.locals.user.money
-  ) {
-    /* do further checks */
-    // update the bid on the monogdb
-    res.locals.object.bids.push(req.body.bid);
-    res.locals.object.save();
-    res.send(`yaay bid is added : ${req.body.bid.money}`);
-    res.send(
-      `remaining money if bid is accepted : ${user.money - req.body.bid.money}`
+  const temp1 = res.locals.user._id.toString();
+  const temp2 = res.locals.object.owner._id.toString();
+  if (temp1 === temp2) {
+    res.locals.chosen_bid_id = req.body.id;
+    console.log("chosen_bid_id = " + res.locals.chosen_bid_id);
+    next();
+  } else {
+    res.locals.bid = await Bids.findById(
+      res.locals.object.bids[res.locals.object.bids.length - 1]._id
     );
-    //
-  } // keck
-  else {
-    res.send("not enough money or too spendthrifty");
-    return res.end();
+    console.log("bid\n" + res.locals.bid + "\n");
+    if (
+      res.locals.bid &&
+      res.locals.user &&
+      req.body.money >= res.locals.bid.money &&
+      req.body.money <= res.locals.user.money
+    ) {
+      /* do further checks */
+      // update the bid on the monogdb
+      Bids.create(
+        { bidder: res.locals.user._id, money: req.body.money },
+        (err, bid) => {
+          if (err) return res.send("error " + err);
+          res.locals.object.bids.push(bid);
+          res.locals.object.save();
+          res.send(
+            `yaay bid is added : ${
+              req.body.money
+            }\nremaining money if bid is accepted : ${
+              res.locals.user.money - req.body.money
+            }`
+          );
+          next();
+        }
+      );
+    } else {
+
+      res.send(temp1 === temp2);
+      return res.end();
+    }
   }
-  next();
 };
 
 module.exports = AuthenticateBid;
