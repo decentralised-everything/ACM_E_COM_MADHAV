@@ -1,11 +1,12 @@
-GET http://localhost:6969/profile/Madhav1
+GET http://localhost:6969/feed/6077ed8d10ebae4578e7df23
 Content-Type: application/json
-authorization: bearer eyJhbGciOiJIUzI1NiJ9.TWFkaGF2MQ.Qmihcnp0bb0wQaQZBwmHBfLBDv20HzOK7f-2zoeQw_E
+authorization: bearer eyJhbGciOiJIUzI1NiJ9.TWFkaGF2.3WKIvJHsN0ZsEOGYUIMW7i2PpgZiuTm8uKiWn5RAu5M
 
-{
-  "name": "Madhav1",
-  "money": 1200
-}
+ {
+  "name": "Madhav",
+  "password": "Madhav123"
+ }
+
 // note: do not add a comma after the last json entry
 // its not gonna end well...
 

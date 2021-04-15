@@ -5,8 +5,8 @@
 const Users = require("../models/user");
 let req, res, func;
 const Checker = () => {
-  for (let i = 0; i < res.local.object.bids.length; i++) {
-    const bid = res.local.object.bids[i];
+  for (let i = 0; i < res.locals.object.bids.length; i++) {
+    const bid = res.locals.object.bids[i];
     // finding out the user that cannot pay
     Users.findById(bid.bidder._id, (err, user) => {
       if (err) {
@@ -14,8 +14,8 @@ const Checker = () => {
       } else {
         if (bid.money > user.money) {
           // removing all the bids that he has made for a particular object
-          for (let j = 0; j < res.local.object.bids.length; j++) {
-            if (res.local.object.bids[j].bidder._id === user.id) {
+          for (let j = 0; j < res.locals.object.bids.length; j++) {
+            if (res.locals.object.bids[j].bidder._id === user.id) {
               res.locals.object.bids.splice(j, 1);
               j--;
             }
@@ -38,9 +38,9 @@ const StartChecking = async (request, response, next) => {
   next();
 };
 
-const StopChecking = () => {
+const StopChecking = async () => {
   clearInterval(func);
 };
-module.exports = {StartChecking, StopChecking};
+module.exports = { StartChecking, StopChecking };
 // 10k, 5k
 // 8k
