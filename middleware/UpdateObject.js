@@ -1,17 +1,11 @@
-
-const {StopChecking} = require("./CheckBids")
-const UpdateObject = async (req, res) => {
-  switch (res.locals.bidStatus) {
-    case "sync":
-      res.locals.object.save();
-      break;
-    case "over":
-      StopChecking();
-      res.locals.object.remove();
-      res.locals.object = undefined;
-      break;
-    default:
-      break;
+const UpdateObject = async (req, res, next) => {
+  if (res.locals.chosen_bid_id) {
+    res.locals.object.remove();
+    res.locals.object = undefined;
+    return res.send("the auction has been confirmed");
+  } else {
+    res.locals.object.save();
+    next();
   }
 };
 

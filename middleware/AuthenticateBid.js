@@ -6,6 +6,14 @@ structure: {
 } 
 */
 const AuthenticateBid = async (req, res, next) => {
+  /*
+   * 
+   *
+   * 
+   * i wanted to implement nepotism 
+   * 
+   * 
+   * */
   const temp1 = res.locals.user._id.toString();
   const temp2 = res.locals.object.owner._id.toString();
   if (temp1 === temp2) {
@@ -42,9 +50,7 @@ const AuthenticateBid = async (req, res, next) => {
         }
       );
     } else {
-
-      res.send(temp1 === temp2);
-      return res.end();
+      return res.send("spendthrift!");
     }
   }
 };
