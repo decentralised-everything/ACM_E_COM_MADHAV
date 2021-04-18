@@ -4,12 +4,8 @@ const Signup = require("../middleware/Signup");
 // here, body must have name, password and type
 // implement this as a promise
 router.post(
-  "/",
-  (req, res, next) => {
-    console.log("good!");
-    next();
-  },
-  Login,
-  Signup
+	"/",
+	Login,
+	Signup
 );
 module.exports = router;

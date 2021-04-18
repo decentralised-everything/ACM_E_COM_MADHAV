@@ -12,21 +12,24 @@ submission type:
 }
 */
 const VerifyAndAddObject = async (req, res, next) => {
-  try {
-    const bid = await Bids.create({
-      bidder: res.locals.user._id,
-      money: req.body.cost,
-    });
-    res.locals.object = await Objects.create({
-      owner: res.locals.user._id,
-      description: req.body.description,
-    });
-    res.locals.object.bids.push(bid);
-    res.locals.object.save();
-    next();
-  } catch (error) {
-    return res.status(500).send("invalid object data!\n" + error);
-  }
+	try 
+	{
+		const bid = await Bids.create({
+			bidder: res.locals.user._id,
+			money: req.body.cost,
+		});
+		res.locals.object = await Objects.create({
+			owner: res.locals.user._id,
+			description: req.body.description,
+		});
+		res.locals.object.bids.push(bid);
+		res.locals.object.save();
+		next();
+	}
+	catch (error)
+	{
+		return res.status(500).send("invalid object data!\n" + error);
+	}
 };
 
 module.exports = VerifyAndAddObject;

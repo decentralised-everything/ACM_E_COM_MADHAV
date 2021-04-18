@@ -1,24 +1,33 @@
 const Objs = require("../models/object");
 
 const ReturnObjects = async (req, res) => {
-  if (req.params) {
-    try {
-      res.locals.object.populate("bids");
-      console.log(res.locals.object._id);
-      res.send({ type: `${res.locals.object._id}`, object: res.locals.object });
-    } catch (error) {
-      res.send({ type: "error", error });
-    }
-  } else {
-    Objs.find((err, objects) => {
-      if (err) {
-        res
-          .status(500)
-          .send("umm, there was an error with the database\n " + err);
-      } else {
-        res.status(200).send(objects);
-      }
-    });
-  }
+	const { id } = req.params;
+	if (id)
+	{
+		try
+		{
+			await res.locals.object.populate("bids").populate("owner").execPopulate();
+			console.log(`\nhehe\n ${res.locals.object}`);
+			res.send({ type: `${res.locals.object._id}`, object: res.locals.object });
+		} 
+		catch (error)
+		{
+			console.log(error);
+		}
+	} 
+	else
+	{
+		try
+		{
+			const objects = await Objs.find({});
+			res.status(200).send(objects);
+		}
+		catch(err)
+		{
+				res
+			  	.status(500)
+			  	.send("umm, there was an error with the database\n " + err);
+		}
+	}
 };
 module.exports = ReturnObjects;
