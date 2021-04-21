@@ -1,4 +1,4 @@
-POST http://localhost:6969/feed/60781039de0ea60daff8aca0
+GET http://localhost:6969/profile/nidhi
 Content-Type: application/json
 authorization: bearer eyJhbGciOiJIUzI1NiJ9.TWFkaGF2.3WKIvJHsN0ZsEOGYUIMW7i2PpgZiuTm8uKiWn5RAu5M
 

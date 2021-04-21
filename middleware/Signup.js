@@ -7,12 +7,14 @@ const Signup = async (req, res) => {
 	try
 	{
 		//salts and hashes in 1 step
+		console.log(req.body.password);
 		const hash = await bcrypt.hash(req.body.password, 10); 
+		
 		const user = await Users.create(
 			{
 				name: req.body.name,
 				password: hash,
-			})
+			});
 		const accessToken = jwt.sign(
 			user.name,
 			process.env.ACCESS_SECRET_TOKEN
@@ -21,7 +23,7 @@ const Signup = async (req, res) => {
 	}
 	catch (error)
 	{
-		res.status(500).send("that was hard");
+		res.status(500).send("that was hard" + error);
 	}
 };
 

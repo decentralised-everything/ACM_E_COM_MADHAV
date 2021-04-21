@@ -14,7 +14,7 @@ const UpdateUser = async (req, res) => {
 		catch (error) 
 		{
       			res.send("couldnt update!");
-    		}
+    	}
 	}
 	else 
 		res.status(418).send(`dont change ${name}'s details, genius!`);

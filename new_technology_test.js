@@ -1,21 +1,13 @@
-const express = require("express");
-const EventEmitter = require("events");
+const func = async () => {
+  const promise = new Promise((resolve, reject) => {
+    if (Date.now() > 1618860212817 + 20000) {
+      resolve("woohoooo!!!");
+    }
+  });
 
-const app = express();
-const sync = new EventEmitter();
+  promise.then((data) => {
+    console.log(data);
+  });
+};
 
-app.get("/listen", async(req, res) => {
-res.write("aight homie...");
-  sync.on("hehe", (data) => {
-	responses.write(data);
-	++j;
-});
-});
-
-app.get("/emit", async(req, res) => {
-  sync.emit("hehe", "oooff");
-	res.write("data sent!");
-	res.end();
-});
-
-app.listen(3000);
+func();
