@@ -33,7 +33,7 @@ const UpdateUser = async (req, res) => {
 	{
 		try
 		{
-			res.locals.user.img = req.body.img; // whats default of buffer type?
+			res.locals.user.img = req.body.img; 
 			res.locals.user.bio = req.body.bio || ".";
 			res.locals.user.password = await bcrypt.hash(req.body.password, 10);
 			await res.locals.user.save();

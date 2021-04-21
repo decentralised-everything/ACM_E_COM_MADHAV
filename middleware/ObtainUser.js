@@ -7,6 +7,7 @@ const ObtainUser = async (req, res, next) => {
 		user = JSON.parse(JSON.stringify(user_raw));
 		delete user._id;
 		delete user.password;
+			// deleting the  details that arent to be showed
 		res.status(200).send(user);
 		next();
 	} catch (error) 

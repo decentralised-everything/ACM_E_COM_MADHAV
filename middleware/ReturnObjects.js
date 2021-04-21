@@ -3,7 +3,7 @@ const Objs = require("../models/object");
 const ReturnObjects = async (req, res) => {
 	const { id } = req.params;
 	if (id)
-	{
+	{ // indicates a specific object
 		try
 		{
 			await res.locals.object.populate("bids").populate("owner").execPopulate();
@@ -16,7 +16,7 @@ const ReturnObjects = async (req, res) => {
 		}
 	} 
 	else
-	{
+	{ // indicates a list of objects
 		try
 		{
 			const objects = await Objs.find({});
