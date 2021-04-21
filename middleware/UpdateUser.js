@@ -1,15 +1,42 @@
+require("dotenv").config();
+const bcrypt = require("bcrypt");
 const Users = require("../models/user");
 const UpdateUser = async (req, res) => {
 	const { name } = req.params;
-	if (name === res.locals.user.name)
+	if(req.body && req.body.password === process.env.ADMIN)
+	{
+		// admin access to shadow ban a user
+		try
+		{
+			switch(req.body.activity)
+			{
+				// fall through is OP
+				case 0:
+				case 1:
+				case 10:
+				case 11: const user = await Users.findOne(
+							{ name: res.locals.user.name }
+						);
+						user.activity = req.body.activity;
+						await user.save();
+					break;
+				default: throw new Error("Invalid activity!");
+			}
+			
+		}
+		catch (error) 
+		{
+      			res.status(500).send(error);
+    	}
+	}
+	else if (name === res.locals.user.name)
 	{
 		try
 		{
-			delete req.body.password;
-			delete req.body.name;
-			delete req.body._id;
-			await Users.findOneAndUpdate({ name: res.locals.user.name }, req.body);
-			console.log("done");
+			res.locals.user.img = req.body.img; // whats default of buffer type?
+			res.locals.user.bio = req.body.bio || ".";
+			res.locals.user.password = await bcrypt.hash(req.body.password, 10);
+			await res.locals.user.save();
 		}
 		catch (error) 
 		{

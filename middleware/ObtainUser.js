@@ -1,14 +1,16 @@
 const Users = require("../models/user");
 const ObtainUser = async (req, res, next) => {
 	const { name } = req.params;
-	try {
+	try 
+	{
 		let user_raw = await Users.findOne({ name: name });
 		user = JSON.parse(JSON.stringify(user_raw));
 		delete user._id;
 		delete user.password;
-		res.send(user);
+		res.status(200).send(user);
 		next();
-	} catch (error) {
+	} catch (error) 
+	{
 		return res.status(403).send("no such user signed up");
 	}
 };

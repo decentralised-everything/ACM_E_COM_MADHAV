@@ -14,11 +14,14 @@ structure: {
    * 
    * */
 const AuthenticateBid = async (req, res, next) => {
-	const temp1 = res.locals.user._id.toString();
-	const temp2 = res.locals.object.owner._id.toString();
+	const temp1 = res.locals.user._id.toString(); //the guy who posted
+	const temp2 = res.locals.object.owner._id.toString(); // the owner
 	if (temp1 === temp2) 
 	{
-		try {
+		try 
+		{
+			// add condition where bidder cannot post bids
+			// if he has a bid more than account balance
 			res.locals.chosen_bid_id = req.body.id;
 			const bid = await Bids.findById(res.locals.chosen_bid_id);
 			const user = await Users.findById(bid.bidder);
@@ -28,7 +31,7 @@ const AuthenticateBid = async (req, res, next) => {
 		} 
 		catch (error) 
 		{
-			res.status(500).send("you put in wrong details!");
+			res.status(500).send(error);
 		}
 	}
 	else 
@@ -40,6 +43,7 @@ const AuthenticateBid = async (req, res, next) => {
 		if (
 			res.locals.bid &&
 			res.locals.user &&
+			res.locals.user.activity < 9 &&
 			req.body.money >= res.locals.bid.money &&
 			req.body.money <= res.locals.user.money
 		) 
@@ -65,11 +69,11 @@ const AuthenticateBid = async (req, res, next) => {
 				} 
 				catch (err) 
 				{
-					return res.send("error " + err);
+					return res.send(err);
 				}
     		} 
 		else
-      		return res.send("spendthrift!");
+      		return res.status(418).send("not possible to bid");
 	}
 };
 

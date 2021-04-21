@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const AuthenticateUser = require("../middleware/AuthenticateUser");
-const VerifyAndAddObject = require("../middleware/VerifyAndAddObject");
+const AuthenticateObject = require("../middleware/AuthenticateObject");
 const ReturnObjects = require("../middleware/ReturnObjects");
 
 // feed only for ppl who logged in
@@ -15,7 +15,7 @@ router.get(
 router.post(
 	"/add",
 	AuthenticateUser,
-	VerifyAndAddObject,
+	AuthenticateObject,
 	ReturnObjects
 );
 

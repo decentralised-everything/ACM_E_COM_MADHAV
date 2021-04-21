@@ -9,7 +9,7 @@ const AuthenticateUser = async (req, res, next) => {
 		const Header_auth = req.headers["authorization"];
 		const token = Header_auth && Header_auth.split(" ")[1];
 		if (!token) 
-			return res.status(401).send("you're an unauthorised boi");
+			throw new Error("you're an unauthorized dude");
 		const name = await jwt.verify(token, process.env.ACCESS_SECRET_TOKEN);
 		res.locals.user = await Users.findOne({ name: name });
        	next();
