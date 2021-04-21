@@ -20,14 +20,36 @@ const AuthenticateBid = async (req, res, next) => {
 	{
 		try 
 		{
-			// add condition where bidder cannot post bids
-			// if he has a bid more than account balance
-			res.locals.chosen_bid_id = req.body.id;
+			const promises = [];
 			const bid = await Bids.findById(res.locals.chosen_bid_id);
-			const user = await Users.findById(bid.bidder);
-			user.money -= bid.money;
-			user.save();
-			next();
+			const bidder = await Users.findById(bid.bidder);
+			// bidder wallet updating
+			bidder.money -= bid.money;
+			bidder.save();
+			//deleting the object and its related bids
+			promises = res.locals.object.bids.map(bid => bid.remove());
+			await Promise.all(promises);
+			res.locals.object.remove();
+			res.send("the auction has been confirmed");
+			// finding out all future bids of the bidder (for other objects obv)
+			const future_bids = await Bids.find({bidder: bidder._id});
+			// finding out the max possible expense out of all the bids he may have done
+			const future_bidding = future_bids.reduce((total, bid) => {
+				return (total + bid.money);
+			}, 0);
+			// if he tried to overspend
+			if(future_bidding > bidder.money)
+			{
+				// making the bidder unable to bid in the future
+				bidder.activity = (bidder.activity > 9 ? bidder.activity : bidder.activity + 10);
+				bidder.save();
+				// deleting any future bids
+				promises = future_bids.map(bid => bid.remove());
+				await Promise.all(promises);
+				// deleting all future bids will make sure that 
+				// those bids referenced by objects 
+				// will be dropped
+			}
 		} 
 		catch (error) 
 		{

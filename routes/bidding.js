@@ -3,7 +3,6 @@ const ObtainObject = require("../middleware/ObtainObject");
 const AuthenticateBid = require("../middleware/AuthenticateBid");
 const AuthenticateUser = require("../middleware/AuthenticateUser");
 const ReturnObjects = require("../middleware/ReturnObjects");
-const UpdateObject = require("../middleware/UpdateObject");
 
 router.get(
 	"/:id", 
@@ -17,7 +16,6 @@ router.post(
 	AuthenticateUser, 
 	ObtainObject, 
 	AuthenticateBid, 
-	UpdateObject, 
 	ReturnObjects
 );
 
